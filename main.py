@@ -60,8 +60,8 @@ def main():
     model = models.Sequential()
     model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.001), input_shape=data[0].shape))
     model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.01)))
-    model.add(layers.Dense(8, activation=LeakyReLU(alpha=0.1)))
-    model.add(layers.Dense(8, activation=LeakyReLU(alpha=0.1)))
+    model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.1)))
+    model.add(layers.Dense(128, activation=LeakyReLU(alpha=0.1)))
     model.add(layers.Dense(1))
     #
     #
@@ -72,7 +72,7 @@ def main():
 
     history = model.fit(data,
                         targets,
-                        epochs=1000,
+                        epochs=100,
                         batch_size=None,
                         verbose=1)
 
