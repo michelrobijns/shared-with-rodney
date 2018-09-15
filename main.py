@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from keras import models
 from keras import layers
+from keras.layers import Dropout
 #some change to the code
 
 def main():
@@ -29,6 +30,7 @@ def main():
     ordered_data = np.copy(data)
     ordered_targets = np.copy(targets)
 
+
     indices = np.arange(data.shape[0])
     np.random.shuffle(indices)
 
@@ -45,24 +47,32 @@ def main():
     data /= std
 
     # ***** Model definition *****
+    from keras.models import Model
+    from keras.layers import LeakyReLU
+
+    # inp = layers.Input(shape=data[0].shape)
+    # l1 = layers.Dense(64, activation='relu', input_shape=data[0].shape)(inp)
+    # l2 = layers.Dense(64, activation='relu')(l1)
+    # out = layers.Dense(1, activation='relu')(l2)
+    # model = Model(inputs=[inp], outputs=[out])
+
 
     model = models.Sequential()
-    model.add(layers.Dense(64, activation='relu', input_shape=data[0].shape))
-    model.add(layers.Dense(64, activation='relu'))
-    model.add(layers.Dense(64, activation='relu'))
+    model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.001), input_shape=data[0].shape))
+    model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.01)))
+    model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.1)))
+    model.add(layers.Dense(64, activation=LeakyReLU(alpha=0.1)))
     model.add(layers.Dense(1))
-
-    # ***** Compile the model *****
-
+    #
+    #
     model.compile(optimizer='rmsprop',
                   loss='mse',
                   metrics=['mae', 'mape'])
 
-    # ***** Train the model *****
 
     history = model.fit(data,
                         targets,
-                        epochs=100,
+                        epochs=1000,
                         batch_size=None,
                         verbose=1)
 
