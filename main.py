@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from keras import models
 from keras import layers
-
+#some change to the code
 
 def main():
     # ***** Load the dataset *****
