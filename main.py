@@ -35,8 +35,8 @@ def main():
     np.random.shuffle(indices)
 
     # Actual shuffling happens here
-    data = data[indices]
-    targets = targets[indices]
+    # data = data[indices]
+    # targets = targets[indices]
 
     # ***** Normalize the data *****
 
@@ -72,7 +72,7 @@ def main():
 
     history = model.fit(data,
                         targets,
-                        epochs=100,
+                        epochs=1000,
                         batch_size=None,
                         verbose=1)
 
