@@ -17,12 +17,12 @@ def main():
     #targets = np.load('targets1.npy')    # Shape:  (1500,)
 
     # ***** Plot dataset to show you what it looks like *****
-
-    plt.plot(data, targets)
-    plt.title('I want to approximate (and overfit) this function')
-    plt.xlabel('t')
-    plt.ylabel('f')
-    plt.show()
+    #
+    # plt.plot(data, targets)
+    # plt.title('I want to approximate (and overfit) this function')
+    # plt.xlabel('t')
+    # plt.ylabel('f')
+    # plt.show()
 
     # ***** Randomly shuffle dataset *****
 
@@ -47,7 +47,7 @@ def main():
     data /= std
 
     # ***** Model definition *****
-    from keras.models import Model
+    # from keras.models import Model
     from keras.layers import LeakyReLU
 
     # inp = layers.Input(shape=data[0].shape)
@@ -72,7 +72,7 @@ def main():
 
     history = model.fit(data,
                         targets,
-                        epochs=1000,
+                        epochs=10000,
                         batch_size=None,
                         verbose=1)
 
@@ -92,12 +92,12 @@ def main():
     #plt.show()  # You can uncomment, but it's not that interesting
 
     # Plot mean absolute percentage error
-    plt.plot(epochs[5:], mape[5:], label='Training MAPE')
-    plt.title('Training MAPE (Mean Absolute Percentage Error)')
-    plt.xlabel('Epochs')
-    plt.ylabel('MAPE')
-    plt.legend()
-    plt.show()
+    # plt.plot(epochs[5:], mape[5:], label='Training MAPE')
+    # plt.title('Training MAPE (Mean Absolute Percentage Error)')
+    # plt.xlabel('Epochs')
+    # plt.ylabel('MAPE')
+    # plt.legend()
+    # plt.show()
 
     # ***** Plot dataset and predictions *****
 
@@ -105,12 +105,12 @@ def main():
 
     predictions = model.predict((ordered_data - mean) / std)
 
-    plt.plot(ordered_data, predictions, 'r', label="prediction")
-    plt.title('Targets and NN predictions')
-    plt.xlabel('t')
-    plt.ylabel('f')
-    plt.legend()
-    plt.show()
+    # plt.plot(ordered_data, predictions, 'r', label="prediction")
+    # plt.title('Targets and NN predictions')
+    # plt.xlabel('t')
+    # plt.ylabel('f')
+    # plt.legend()
+    # plt.show()
 
 
 if __name__ == '__main__':
